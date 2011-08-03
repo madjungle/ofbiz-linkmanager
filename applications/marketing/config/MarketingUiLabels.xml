@@ -701,10 +701,10 @@
     <property key="MarketingLinkManagerLinkDescription">
         <value xml:lang="en">Link Description</value>
     </property>
-    <property key="MarketingLinkManagerLinkStatus">
+    <property key="MarketingLinkManagerLinkStatusId">
         <value xml:lang="en">Link Status</value>
     </property>
-    <property key="MarketingLinkManagerLinkType">
+    <property key="MarketingLinkManagerLinkTypeId">
         <value xml:lang="en">Link Type</value>
     </property>
     <property key="MarketingLinkManagerWebsiteUrl">

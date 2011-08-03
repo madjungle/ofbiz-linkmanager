@@ -379,6 +379,10 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="ListLinkManagerLinks"/>
     </request-map>
+    <request-map uri="EditLinkManagerLinks">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="EditLinkManagerLinks"/>
+    </request-map>
 
 
     <!-- Lookup request mappings -->
@@ -475,5 +479,6 @@ under the License.
     <view-map name="PartyStatusReport" type="screen" page="component://marketing/widget/MarketingReportScreens.xml#PartyStatusReport"/>
 
     <view-map name="ListLinkManagerLinks" type="screen" page="component://marketing/widget/LinkManagerScreens.xml#ListLinkManagerLinks"/>
+    <view-map name="EditLinkManagerLinks" type="screen" page="component://marketing/widget/LinkManagerScreens.xml#EditLinkManagerLinks"/>
 <!-- end of view mappings -->
 </site-conf>

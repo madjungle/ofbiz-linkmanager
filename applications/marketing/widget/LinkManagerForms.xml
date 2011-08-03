@@ -37,12 +37,65 @@ under the License.
 	                <parameter param-name="linkManagerId"/>
 	            </hyperlink>
 	        </field>
-	        <field name="linkStatus" title="${uiLabelMap.MarketingLinkManagerLinkStatus}"><display/></field>
+	        <field name="linkStatusId" title="${uiLabelMap.MarketingLinkManagerLinkStatusId}"><display/></field>
 	        <field name="linkType" title="${uiLabelMap.MarketingLinkManagerLinkType}"><display/></field>
 	        <field name="linkAnchorText" title="${uiLabelMap.MarketingLinkManagerLinkAnchorText}"><display/></field>
 	        <field name="linkDescription" title="${uiLabelMap.MarketingLinkManagerLinkDescription}"><display/></field>
-
 	        <field name="websiteUrl" title="${uiLabelMap.MarketingLinkManagerWebsiteUrl}"><display/></field>
 	        <field name="createdDate" title="${uiLabelMap.MarketingLinkManagerCreatedDate}"><display/></field>
 	    </form>
+
+	    <form name="EditLinkManagerLinks" type="single" target="updateLinkManagerLinks" title=""
+	        header-row-style="header-row" default-table-style="basic-table">
+	        <alt-target use-when="contactListParty==null" target="createContactListParty"/>
+
+	        <field name="linkManagerId"><hidden/></field>
+	        <field name="partyId" title="${uiLabelMap.MarketingContactListPartyId}"><lookup target-form-name="LookupPartyName"/></field>
+	        <field name="createdDate" title="${uiLabelMap.CommonFromDate}"><date-time default-value="${groovy: org.ofbiz.base.util.UtilDateTime.nowTimestamp()}"/></field>
+	        <field use-when="partyId!=null" name="partyId"><display/></field>
+	        <field use-when="createdDate!=null" name="createdDate"><display/></field>
+
+	        <field name="linkStatusId" title="${uiLabelMap.CommonStatus}">
+	            <drop-down no-current-selected-key="CLPT_ACCEPTED">
+	                <entity-options entity-name="StatusItem" description="${description}">
+	                    <entity-constraint name="statusTypeId" value="CONTACTLST_PARTY" operator="equals"/>
+	                    <entity-order-by field-name="description"/>
+	                </entity-options>
+	            </drop-down>
+	        </field>
+	
+	        <field name="linkTypeId" title="${uiLabelMap.CommonStatus}">
+	            <drop-down no-current-selected-key="CLPT_ACCEPTED">
+	                <entity-options entity-name="StatusItem" description="${description}">
+	                    <entity-constraint name="statusTypeId" value="CONTACTLST_PARTY" operator="equals"/>
+	                    <entity-order-by field-name="description"/>
+	                </entity-options>
+	            </drop-down>
+	        </field>
+	
+	        <field name="linkAnchorText" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerLinkAnchorText}"><text size="70"/></field>
+	        <field name="destinationUrl" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerDestinationUrl}"><text size="70"/></field>
+	        <field name="linkDescription" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerLinkDescription}"><text size="70"/></field>
+	        <field name="websiteUrl" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerWebsiteUrl}"><text size="70"/></field>
+	
+	        <field name="websiteTypeId" title="${uiLabelMap.CommonStatus}">
+	            <drop-down no-current-selected-key="CLPT_ACCEPTED">
+	                <entity-options entity-name="StatusItem" description="${description}">
+	                    <entity-constraint name="statusTypeId" value="CONTACTLST_PARTY" operator="equals"/>
+	                    <entity-order-by field-name="description"/>
+	                </entity-options>
+	            </drop-down>
+	        </field>
+	        <field name="comments" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerComments}"><text size="70"/></field>
+	
+
+	        <field name="preferredContactMechId" title="${uiLabelMap.MarketingContactListPreferredContactMech}">
+	            <lookup target-form-name="LookupPreferredContactMech" target-parameter="partyId"/>
+	        </field>
+
+	        <field name="submitButton" title="${uiLabelMap.CommonSave}" widget-style="buttontext"><submit button-type="text-link"/></field>
+	        <field use-when="partyId!=null" name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="buttontext"><submit button-type="text-link"/></field>
+	        <field name="cancelLink" title=" " widget-style="buttontext"><hyperlink target="${donePage}" also-hidden="false" description="${uiLabelMap.CommonCancelDone}"/></field>
+	     </form>
+	
 </forms>
