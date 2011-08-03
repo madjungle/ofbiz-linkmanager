@@ -34,6 +34,7 @@ under the License.
   <!--  - org.ofbiz.marketing.contact -->
   <!--  - org.ofbiz.marketing.segment -->
   <!--  - org.ofbiz.marketing.tracking -->
+  <!--  - org.ofbiz.marketing.linkmanager -->
   <!-- ========================================================= -->
 
 
@@ -626,4 +627,28 @@ under the License.
             <key-map field-name="orderId"/>
         </view-link>
     </view-entity>
+
+    <!-- ========================================================= -->
+    <!-- org.ofbiz.marketing.linkmanager -->
+    <!-- ========================================================= -->
+
+    <entity entity-name="LinkManager"
+            package-name="org.ofbiz.marketing.linkmanager"
+            title="Link Manager Entity">
+      <field name="linkManagerId" type="id-ne"></field>
+      <field name="marketingCampaignId" type="id"></field>
+      <field name="linkUrl" type="url"></field>
+      <field name="comments" type="comment"></field>
+      <field name="description" type="description"></field>
+      <field name="linkCost" type="numeric"></field>
+      <field name="fromDate" type="date-time"></field>
+      <field name="thruDate" type="date-time"></field>
+      <field name="groupId" type="id"></field>
+      <field name="subgroupId" type="id"></field>
+      <field name="createdDate" type="date-time"></field>
+      <field name="createdByUserLogin" type="id-vlong"></field>
+      <field name="lastModifiedDate" type="date-time"></field>
+      <field name="lastModifiedByUserLogin" type="id-vlong"></field>
+      <prim-key field="linkManagerId"/>
+    </entity>
 </entitymodel>
