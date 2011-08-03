@@ -86,3 +86,4 @@ debian/ofbiz/
 debian/stamps/
 debian/orig-work
 .pc
+.DS_Store
