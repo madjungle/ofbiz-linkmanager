@@ -25,6 +25,6 @@ under the License.
         <menu-item name="Segment" title="${uiLabelMap.MarketingSegment}"><link target="FindSegmentGroup"/></menu-item>
         <menu-item name="ContactList" title="${uiLabelMap.MarketingContactList}"><link target="FindContactLists"/></menu-item>
         <menu-item name="Reports" title="${uiLabelMap.MarketingReports}"><link target="MarketingReport"/></menu-item>
-        <menu-item name="Link Manager" title="${uiLabelMap.LinkManager}"><link target="LinkManager"/></menu-item>
+        <menu-item name="Link Manager" title="${uiLabelMap.MarketingLinkManager}"><link target="LinkManager"/></menu-item>
     </menu>
 </menus>

@@ -683,6 +683,9 @@
         <value xml:lang="pt_BR">Buscar Leads da equipe de vendas</value>
         <value xml:lang="th">ค้นหา Lead</value>
     </property>
+    <property key="MarketingLinkManager">
+        <value xml:lang="en">Link Manager</value>
+    </property>
     <property key="MarketingMainPage">
         <value xml:lang="de">Haupt</value>
         <value xml:lang="en">Main</value>
