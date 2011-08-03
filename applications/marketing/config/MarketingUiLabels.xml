@@ -686,6 +686,30 @@
     <property key="MarketingLinkManager">
         <value xml:lang="en">Link Manager</value>
     </property>
+    <property key="MarketingLinkManagerCreate">
+        <value xml:lang="en">Add a Link</value>
+    </property>
+    <property key="MarketingLinkManagerCreatedDate">
+        <value xml:lang="en">Link Created Date</value>
+    </property>
+    <property key="MarketingLinkManagerId">
+        <value xml:lang="en">Link Id</value>
+    </property>
+    <property key="MarketingLinkManagerLinkAnchorText">
+        <value xml:lang="en">Link Anchor Text</value>
+    </property>
+    <property key="MarketingLinkManagerLinkDescription">
+        <value xml:lang="en">Link Description</value>
+    </property>
+    <property key="MarketingLinkManagerLinkStatus">
+        <value xml:lang="en">Link Status</value>
+    </property>
+    <property key="MarketingLinkManagerLinkType">
+        <value xml:lang="en">Link Type</value>
+    </property>
+    <property key="MarketingLinkManagerWebsiteUrl">
+        <value xml:lang="en">Website URL</value>
+    </property>
     <property key="MarketingMainPage">
         <value xml:lang="de">Haupt</value>
         <value xml:lang="en">Main</value>

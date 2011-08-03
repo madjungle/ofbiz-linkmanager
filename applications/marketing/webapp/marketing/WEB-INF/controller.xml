@@ -473,5 +473,7 @@ under the License.
     <view-map name="MarketingCampaignReport" type="screen" page="component://marketing/widget/MarketingReportScreens.xml#MarketingCampaignReport"/>
     <view-map name="EmailStatusReport" type="screen" page="component://marketing/widget/MarketingReportScreens.xml#EmailStatusReport"/>
     <view-map name="PartyStatusReport" type="screen" page="component://marketing/widget/MarketingReportScreens.xml#PartyStatusReport"/>
+
+    <view-map name="ListLinkManagerLinks" type="screen" page="component://marketing/widget/LinkManagerScreens.xml#ListLinkManagerLinks"/>
 <!-- end of view mappings -->
 </site-conf>
