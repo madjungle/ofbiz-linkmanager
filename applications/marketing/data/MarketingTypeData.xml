@@ -102,5 +102,24 @@ under the License.
     <WebSite webSiteId="SFA" siteName="SFA Manager" visualThemeSetId="BACKOFFICE"/>
 
     <EnumerationType enumTypeId="SLSOPP_TYP_ENUM" description="Sales Opportunity Type"/>
-    
+
+    <LinkManagerWebsiteType websiteTypeId="SOCIAL_MEDIA" description="Social Media"/>
+    <LinkManagerWebsiteType websiteTypeId="E_COMMERCE" description="E-Commerce"/>
+    <LinkManagerWebsiteType websiteTypeId="PERSONAL_BLOG" description="Personal Blog"/>
+    <LinkManagerWebsiteType websiteTypeId="COPORATE_BLOG" description="Corporate Blog"/>
+    <LinkManagerWebsiteType websiteTypeId="NEWS_MEDIA" description="News / Media"/>
+    <LinkManagerWebsiteType websiteTypeId="COMMUNITY" description="Community"/>
+    <LinkManagerWebsiteType websiteTypeId="DIRECTORY" description="Directory"/>
+    <LinkManagerWebsiteType websiteTypeId="OTHER" description="Other"/>
+
+    <LinkManagerLinkType linkTypeId="USER_SUBMITTED" description="User Submitted"/>
+    <LinkManagerLinkType linkTypeId="CONTENT_EXCHANGE" description="Content Exchange"/>
+    <LinkManagerLinkType linkTypeId="PAID_PERMANENT" description="Paid (Permanent)"/>
+    <LinkManagerLinkType linkTypeId="PAID_TEMPORARY" description="Paid (Temporary)"/>
+    <LinkManagerLinkType linkTypeId="BLOG_COMMENT" description="Blog Comment"/>
+    <LinkManagerLinkType linkTypeId="ORGANIC_LINK" description="Organic Link"/>
+    <LinkManagerLinkType linkTypeId="INDIRECT_OTHER" description="Indirect / Other"/>
+    <LinkManagerLinkType linkTypeId="AFFLIIATE" description="Affiliate"/>
+    <LinkManagerLinkType linkTypeId="COMPETITOR_BACKLINK" description="Competitor Backlink"/>
+
 </entity-engine-xml>

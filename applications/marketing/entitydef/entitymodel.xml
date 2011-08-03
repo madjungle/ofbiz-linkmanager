@@ -639,12 +639,12 @@ under the License.
       <field name="marketingCampaignId" type="id"></field>
       <field name="destinationUrl" type="url"></field>
       <field name="websiteUrl" type="url"></field>
-      <field name="websiteType" type="id"></field>
+      <field name="websiteTypeId" type="id"></field>
       <field name="comments" type="comment"></field>
       <field name="linkDescription" type="description"></field>
       <field name="linkAnchorText" type="description"></field>
-      <field name="linkStatus" type="id"></field>
-      <field name="linkType" type="id"></field>
+      <field name="linkStatusId" type="id"></field>
+      <field name="linkTypeId" type="id"></field>
       <field name="linkCost" type="numeric"></field>
       <field name="linkAcquiredDate" type="date-time"></field>
       <field name="createdDate" type="date-time"></field>
@@ -652,5 +652,19 @@ under the License.
       <field name="lastModifiedDate" type="date-time"></field>
       <field name="lastModifiedByUserLogin" type="id-vlong"></field>
       <prim-key field="linkManagerId"/>
+    </entity>
+    <entity entity-name="LinkManagerLinkType"
+            package-name="org.ofbiz.marketing.linkmanager"
+            title="Link Manager Link Type Entity">
+      <field name="linkTypeId" type="id-ne"></field>
+      <field name="description" type="description"></field>
+      <prim-key field="linkTypeId"/>
+    </entity>
+    <entity entity-name="LinkManagerWebsiteType"
+            package-name="org.ofbiz.marketing.linkmanager"
+            title="Link Manager Website Type Entity">
+      <field name="websiteTypeId" type="id-ne"></field>
+      <field name="description" type="description"></field>
+      <prim-key field="websiteTypeId"/>
     </entity>
 </entitymodel>
