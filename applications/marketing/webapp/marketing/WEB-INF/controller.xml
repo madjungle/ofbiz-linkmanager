@@ -372,7 +372,14 @@ under the License.
         <security https="true" auth="true"/>
         <response name="success" type="view" value="ContactMechTypeOnly"/>
     </request-map>
+
     
+    <!--  LinkManager request mappings -->
+    <request-map uri="ListLinkManagerLinks">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="ListLinkManagerLinks"/>
+    </request-map>
+
 
     <!-- Lookup request mappings -->
     <request-map uri="LookupSegmentGroup"><security https="true" auth="true"/><response name="success" type="view" value="LookupSegmentGroup"/></request-map>
