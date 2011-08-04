@@ -38,7 +38,7 @@ under the License.
 	            </hyperlink>
 	        </field>
 	        <field name="linkStatusId" title="${uiLabelMap.MarketingLinkManagerLinkStatusId}"><display/></field>
-	        <field name="linkType" title="${uiLabelMap.MarketingLinkManagerLinkType}"><display/></field>
+	        <field name="linkTypeId" title="${uiLabelMap.MarketingLinkManagerLinkType}"><display/></field>
 	        <field name="linkAnchorText" title="${uiLabelMap.MarketingLinkManagerLinkAnchorText}"><display/></field>
 	        <field name="linkDescription" title="${uiLabelMap.MarketingLinkManagerLinkDescription}"><display/></field>
 	        <field name="websiteUrl" title="${uiLabelMap.MarketingLinkManagerWebsiteUrl}"><display/></field>
@@ -55,19 +55,18 @@ under the License.
 	        <field use-when="partyId!=null" name="partyId"><display/></field>
 	        <field use-when="createdDate!=null" name="createdDate"><display/></field>
 
-	        <field name="linkStatusId" title="${uiLabelMap.CommonStatus}">
-	            <drop-down no-current-selected-key="CLPT_ACCEPTED">
+	        <field name="linkStatusId" title="${uiLabelMap.LinkManagerLinkStatusId}">
+	            <drop-down no-current-selected-key="MKTG_CAMP_ACTIVE">
 	                <entity-options entity-name="StatusItem" description="${description}">
-	                    <entity-constraint name="statusTypeId" value="CONTACTLST_PARTY" operator="equals"/>
+	                    <entity-constraint name="statusTypeId" value="MKTG_CAMP_ACTIVE" operator="equals"/>
 	                    <entity-order-by field-name="description"/>
 	                </entity-options>
 	            </drop-down>
 	        </field>
 	
-	        <field name="linkTypeId" title="${uiLabelMap.CommonStatus}">
-	            <drop-down no-current-selected-key="CLPT_ACCEPTED">
-	                <entity-options entity-name="StatusItem" description="${description}">
-	                    <entity-constraint name="statusTypeId" value="CONTACTLST_PARTY" operator="equals"/>
+	        <field name="linkTypeId" title="${uiLabelMap.LinkManagerLinkTypeId}">
+	            <drop-down>
+	                <entity-options entity-name="LinkManagerLinkType" description="${description}">
 	                    <entity-order-by field-name="description"/>
 	                </entity-options>
 	            </drop-down>
@@ -78,10 +77,9 @@ under the License.
 	        <field name="linkDescription" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerLinkDescription}"><text size="70"/></field>
 	        <field name="websiteUrl" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerWebsiteUrl}"><text size="70"/></field>
 	
-	        <field name="websiteTypeId" title="${uiLabelMap.CommonStatus}">
-	            <drop-down no-current-selected-key="CLPT_ACCEPTED">
-	                <entity-options entity-name="StatusItem" description="${description}">
-	                    <entity-constraint name="statusTypeId" value="CONTACTLST_PARTY" operator="equals"/>
+	        <field name="websiteTypeId" title="${uiLabelMap.LinkManagerWebsiteTypeId}">
+	            <drop-down>
+	                <entity-options entity-name="LinkManagerWebsiteType" description="${description}">
 	                    <entity-order-by field-name="description"/>
 	                </entity-options>
 	            </drop-down>

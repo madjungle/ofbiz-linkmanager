@@ -122,4 +122,12 @@ under the License.
     <LinkManagerLinkType linkTypeId="AFFLIIATE" description="Affiliate"/>
     <LinkManagerLinkType linkTypeId="COMPETITOR_BACKLINK" description="Competitor Backlink"/>
 
+    <StatusType description="Link Manager" statusTypeId="MKTG_LINK_STATUS" hasTable="N" parentTypeId=""/>
+    <StatusItem description="Queued" sequenceId="01" statusCode="QUEUED" statusId="MKTG_CAMP_QUEUED" statusTypeId="MKTG_LINK_STATUS"/>
+    <StatusItem description="Requested" sequenceId="02" statusCode="REQUESTED" statusId="MKTG_CAMP_REQUESTED" statusTypeId="MKTG_LINK_STATUS"/>
+    <StatusItem description="Active" sequenceId="03" statusCode="ACTIVE" statusId="MKTG_CAMP_ACTIVE" statusTypeId="MKTG_LINK_STATUS"/>
+    <StatusItem description="Inactive" sequenceId="04" statusCode="INACTIVE" statusId="MKTG_CAMP_INACTIVE" statusTypeId="MKTG_LINK_STATUS"/>
+    <StatusItem description="Declinded" sequenceId="05" statusCode="DECLINDED" statusId="MKTG_CAMP_DECLINDED" statusTypeId="MKTG_LINK_STATUS"/>
+    <StatusItem description="Ignore" sequenceId="06" statusCode="IGNORE" statusId="MKTG_CAMP_IGNORE" statusTypeId="MKTG_LINK_STATUS"/>
+
 </entity-engine-xml>
