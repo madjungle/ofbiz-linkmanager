@@ -338,66 +338,76 @@ public class CatalogUrlFilter extends ContextFilter {
     
     public static String makeCategoryUrl(HttpServletRequest request, String previousCategoryId, String productCategoryId, String productId, String viewSize, String viewIndex, String viewSort, String searchString) {
         Delegator delegator = (Delegator) request.getAttribute("delegator");
-        String url = null;
         try {
             GenericValue productCategory = delegator.findOne("ProductCategory", UtilMisc.toMap("productCategoryId", productCategoryId), true);
             CategoryContentWrapper wrapper = new CategoryContentWrapper(productCategory, request);
-            StringWrapper alternativeUrl = wrapper.get("ALTERNATIVE_URL");
-            
-            if (UtilValidate.isNotEmpty(alternativeUrl) && UtilValidate.isNotEmpty(alternativeUrl.toString())) {
-                StringBuilder urlBuilder = new StringBuilder();
-                urlBuilder.append(request.getSession().getServletContext().getContextPath());
-                if (urlBuilder.charAt(urlBuilder.length() - 1) != '/') {
-                    urlBuilder.append("/");
-                }
-                // append alternative URL
-                url = UrlServletHelper.invalidCharacter(alternativeUrl.toString());
-                urlBuilder.append(url);
-                if (UtilValidate.isNotEmpty(productCategoryId)) {
-                    urlBuilder.append("-");
-                    urlBuilder.append(productCategoryId);
-                    urlBuilder.append("-c");
-                }
-                // append view index
-                if (UtilValidate.isNotEmpty(viewIndex)) {
-                    if (!urlBuilder.toString().endsWith("?") && !urlBuilder.toString().endsWith("&")) {
-                        urlBuilder.append("?");
-                    }
-                    urlBuilder.append("viewIndex=" + viewIndex + "&");
-                }
-                // append view size
-                if (UtilValidate.isNotEmpty(viewSize)) {
-                    if (!urlBuilder.toString().endsWith("?") && !urlBuilder.toString().endsWith("&")) {
-                        urlBuilder.append("?");
-                    }
-                    urlBuilder.append("viewSize=" + viewSize + "&");
-                }
-                // append view sort
-                if (UtilValidate.isNotEmpty(viewSort)) {
-                    if (!urlBuilder.toString().endsWith("?") && !urlBuilder.toString().endsWith("&")) {
-                        urlBuilder.append("?");
-                    }
-                    urlBuilder.append("viewSort=" + viewSort + "&");
-                }
-                // append search string
-                if (UtilValidate.isNotEmpty(searchString)) {
-                    if (!urlBuilder.toString().endsWith("?") && !urlBuilder.toString().endsWith("&")) {
-                        urlBuilder.append("?");
-                    }
-                    urlBuilder.append("searchString=" + searchString + "&");
-                }
-                if (urlBuilder.toString().endsWith("&")) {
-                    return urlBuilder.toString().substring(0, urlBuilder.toString().length()-1);
-                }
-                
-                return  urlBuilder.toString();
-            } else {
-                return CatalogUrlServlet.makeCatalogUrl(request, productId, productCategoryId, previousCategoryId);
-            }
+            List<String> trail = CategoryWorker.getTrail(request);
+            return makeCategoryUrl(delegator, wrapper, trail, request.getSession().getServletContext().getContextPath(), previousCategoryId, productCategoryId, productId, viewSize, viewIndex, viewSort, searchString);
         } catch (GenericEntityException e) {
             Debug.logWarning(e, "Cannot create category's URL for: " + productCategoryId, module);
             return redirectUrl;
         }
+    }
+
+    public static String makeCategoryUrl(Delegator delegator, CategoryContentWrapper wrapper, List<String> trail, String contextPath, String previousCategoryId, String productCategoryId, String productId, String viewSize, String viewIndex, String viewSort, String searchString) {
+        String url = "";
+        StringWrapper alternativeUrl = wrapper.get("ALTERNATIVE_URL");
+        
+        if (UtilValidate.isNotEmpty(alternativeUrl) && UtilValidate.isNotEmpty(alternativeUrl.toString())) {
+            StringBuilder urlBuilder = new StringBuilder();
+            urlBuilder.append(contextPath);
+            if (urlBuilder.charAt(urlBuilder.length() - 1) != '/') {
+                urlBuilder.append("/");
+            }
+            // append alternative URL
+            url = UrlServletHelper.invalidCharacter(alternativeUrl.toString());
+            urlBuilder.append(url);
+            if (UtilValidate.isNotEmpty(productCategoryId)) {
+                urlBuilder.append("-");
+                urlBuilder.append(productCategoryId);
+                urlBuilder.append("-c");
+            }
+            // append view index
+            if (UtilValidate.isNotEmpty(viewIndex)) {
+                if (!urlBuilder.toString().endsWith("?") && !urlBuilder.toString().endsWith("&")) {
+                    urlBuilder.append("?");
+                }
+                urlBuilder.append("viewIndex=" + viewIndex + "&");
+            }
+            // append view size
+            if (UtilValidate.isNotEmpty(viewSize)) {
+                if (!urlBuilder.toString().endsWith("?") && !urlBuilder.toString().endsWith("&")) {
+                    urlBuilder.append("?");
+                }
+                urlBuilder.append("viewSize=" + viewSize + "&");
+            }
+            // append view sort
+            if (UtilValidate.isNotEmpty(viewSort)) {
+                if (!urlBuilder.toString().endsWith("?") && !urlBuilder.toString().endsWith("&")) {
+                    urlBuilder.append("?");
+                }
+                urlBuilder.append("viewSort=" + viewSort + "&");
+            }
+            // append search string
+            if (UtilValidate.isNotEmpty(searchString)) {
+                if (!urlBuilder.toString().endsWith("?") && !urlBuilder.toString().endsWith("&")) {
+                    urlBuilder.append("?");
+                }
+                urlBuilder.append("searchString=" + searchString + "&");
+            }
+            if (urlBuilder.toString().endsWith("&")) {
+                return urlBuilder.toString().substring(0, urlBuilder.toString().length()-1);
+            }
+            
+            url = urlBuilder.toString();
+        } else {
+            if(UtilValidate.isEmpty(trail)){
+                trail = FastList.newInstance();
+            }
+            url = CatalogUrlServlet.makeCatalogUrl(contextPath, trail, productId, productCategoryId, previousCategoryId);
+        }
+        
+        return url;
     }
     
     public static String makeProductUrl(HttpServletRequest request, String previousCategoryId, String productCategoryId, String productId) {
@@ -406,29 +416,39 @@ public class CatalogUrlFilter extends ContextFilter {
         try {
             GenericValue product = delegator.findOne("Product", UtilMisc.toMap("productId", productId), true);
             ProductContentWrapper wrapper = new ProductContentWrapper(product, request);
-            StringWrapper alternativeUrl = wrapper.get("ALTERNATIVE_URL");
-            if (UtilValidate.isNotEmpty(alternativeUrl) && UtilValidate.isNotEmpty(alternativeUrl.toString())) {
-                StringBuilder urlBuilder = new StringBuilder();
-                urlBuilder.append(request.getSession().getServletContext().getContextPath());
-                if (urlBuilder.charAt(urlBuilder.length() - 1) != '/') {
-                    urlBuilder.append("/");
-                }
-                // append alternative URL
-                url = UrlServletHelper.invalidCharacter(alternativeUrl.toString());
-                urlBuilder.append(url);
-                if (UtilValidate.isNotEmpty(productId)) {
-                    urlBuilder.append("-");
-                    urlBuilder.append(productId);
-                    urlBuilder.append("-p");
-                }
-                return  urlBuilder.toString();
-            } else {
-                return CatalogUrlServlet.makeCatalogUrl(request, productId, productCategoryId, previousCategoryId);
-            }
+            List<String> trail = CategoryWorker.getTrail(request);
+            url = makeProductUrl(delegator, wrapper, trail, request.getSession().getServletContext().getContextPath(), previousCategoryId, productCategoryId, productId);
         } catch (GenericEntityException e) {
             Debug.logWarning(e, "Cannot create product's URL for: " + productId, module);
             return redirectUrl;
         }
+        return url;
     }
-    
+
+    public static String makeProductUrl(Delegator delegator, ProductContentWrapper wrapper,List<String> trail, String contextPath, String previousCategoryId, String productCategoryId, String productId) {
+        String url = "";
+        StringWrapper alternativeUrl = wrapper.get("ALTERNATIVE_URL");
+        if (UtilValidate.isNotEmpty(alternativeUrl) && UtilValidate.isNotEmpty(alternativeUrl.toString())) {
+            StringBuilder urlBuilder = new StringBuilder();
+            urlBuilder.append(contextPath);
+            if (urlBuilder.charAt(urlBuilder.length() - 1) != '/') {
+                urlBuilder.append("/");
+            }
+            // append alternative URL
+            url = UrlServletHelper.invalidCharacter(alternativeUrl.toString());
+            urlBuilder.append(url);
+            if (UtilValidate.isNotEmpty(productId)) {
+                urlBuilder.append("-");
+                urlBuilder.append(productId);
+                urlBuilder.append("-p");
+            }
+            url = urlBuilder.toString();
+        } else {
+            if(UtilValidate.isEmpty(trail)){
+                trail = FastList.newInstance();
+            }
+            url = CatalogUrlServlet.makeCatalogUrl(contextPath, trail, productId, productCategoryId, previousCategoryId);
+        }
+        return url;
+    }
 }
