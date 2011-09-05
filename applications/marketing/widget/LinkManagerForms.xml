@@ -45,7 +45,7 @@ under the License.
 	        <field name="createdDate" title="${uiLabelMap.MarketingLinkManagerCreatedDate}"><display/></field>
 	    </form>
 
-	    <form name="EditLinkManagerLinks" type="single" target="updateLinkManagerLinks" title=""
+	    <form name="EditLinkManagerLinks" type="single" target="createLinkManagerLinks" title=""
 	        header-row-style="header-row" default-table-style="basic-table">
 	        <alt-target use-when="contactListParty==null" target="createContactListParty"/>
 
@@ -95,5 +95,55 @@ under the License.
 	        <field use-when="partyId!=null" name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="buttontext"><submit button-type="text-link"/></field>
 	        <field name="cancelLink" title=" " widget-style="buttontext"><hyperlink target="${donePage}" also-hidden="false" description="${uiLabelMap.CommonCancelDone}"/></field>
 	     </form>
-	
+
+
+	    <form name="CreateLinkManagerLinks" type="single" target="CreateLinkManagerLinks" title=""
+	        header-row-style="header-row" default-table-style="basic-table">
+
+	        <field name="linkManagerId"><hidden/></field>
+	        <field name="partyId" title="${uiLabelMap.MarketingContactListPartyId}"><lookup target-form-name="LookupPartyName"/></field>
+	        <field name="createdDate" title="${uiLabelMap.CommonFromDate}"><date-time default-value="${groovy: org.ofbiz.base.util.UtilDateTime.nowTimestamp()}"/></field>
+	        <field use-when="partyId!=null" name="partyId"><display/></field>
+	        <field use-when="createdDate!=null" name="createdDate"><display/></field>
+
+	        <field name="statusTypeId" title="${uiLabelMap.LinkManagerLinkStatusId}">
+	            <drop-down>
+	                <entity-options entity-name="StatusItem" description="${description}">
+	                    <entity-constraint name="statusTypeId" value="MKTG_LINK_STATUS" operator="equals"/>
+	                    <entity-order-by field-name="description"/>
+	                </entity-options>
+	            </drop-down>
+	        </field>
+
+	        <field name="linkTypeId" title="${uiLabelMap.LinkManagerLinkTypeId}">
+	            <drop-down>
+	                <entity-options entity-name="LinkManagerLinkType" description="${description}">
+	                    <entity-order-by field-name="description"/>
+	                </entity-options>
+	            </drop-down>
+	        </field>
+
+	        <field name="linkAnchorText" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerLinkAnchorText}"><text size="70"/></field>
+	        <field name="destinationUrl" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerDestinationUrl}"><text size="70"/></field>
+	        <field name="linkDescription" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerLinkDescription}"><text size="70"/></field>
+	        <field name="websiteUrl" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerWebsiteUrl}"><text size="70"/></field>
+
+	        <field name="websiteTypeId" title="${uiLabelMap.LinkManagerWebsiteTypeId}">
+	            <drop-down>
+	                <entity-options entity-name="LinkManagerWebsiteType" description="${description}">
+	                    <entity-order-by field-name="description"/>
+	                </entity-options>
+	            </drop-down>
+	        </field>
+	        <field name="comments" map-name="parameters" title="${uiLabelMap.MarketingLinkManagerComments}"><text size="70"/></field>
+
+
+	        <field name="preferredContactMechId" title="${uiLabelMap.MarketingContactListPreferredContactMech}">
+	            <lookup target-form-name="LookupPreferredContactMech" target-parameter="partyId"/>
+	        </field>
+
+	        <field name="submitButton" title="${uiLabelMap.CommonSave}" widget-style="buttontext"><submit button-type="text-link"/></field>
+	        <field use-when="partyId!=null" name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="buttontext"><submit button-type="text-link"/></field>
+	        <field name="cancelLink" title=" " widget-style="buttontext"><hyperlink target="${donePage}" also-hidden="false" description="${uiLabelMap.CommonCancelDone}"/></field>
+	     </form>
 </forms>

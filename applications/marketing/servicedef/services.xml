@@ -556,4 +556,24 @@ under the License.
         <attribute name="partyId" type="String" mode="IN" optional="false"/>
     </service>
 
+    <!-- MarketingLinkManager Services -->
+    <service name="createLinkManagerLinks" default-entity-name="LinkManager" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a LinkManagerLink</description>
+        <permission-service service-name="marketingPermissionService" main-action="CREATE"/>
+        <auto-attributes include="pk" mode="OUT" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+        <override name="description" optional="false"/>
+    </service>
+    <service name="updateLinkManagerLinks" default-entity-name="LinkManager" engine="entity-auto" invoke="update" auth="true">
+        <description>Update a LinkManagerLink</description>
+        <permission-service service-name="marketingPermissionService" main-action="UPDATE"/>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="deleteLinkManagerLinks" default-entity-name="LinkManager" engine="entity-auto" invoke="delete" auth="true">
+        <description>Delete a LinkManagerLink</description>
+        <permission-service service-name="marketingPermissionService" main-action="DELETE"/>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
+
 </services>

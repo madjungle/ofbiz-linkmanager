@@ -41,7 +41,7 @@ under the License.
 	                    <decorator-section name="body">
 	                        <screenlet title="${uiLabelMap.PageTitleListLinkManagerLinks}">
 	                            <container>
-	                                <link text="${uiLabelMap.MarketingLinkManagerCreate}" target="EditLinkManagerLinks" style="buttontext">
+	                                <link text="${uiLabelMap.MarketingLinkManagerCreate}" target="CreateLinkManagerLinks" style="buttontext">
 	                                    <parameter param-name="DONE_PAGE" from-field="donePage"/>
 	                                </link>
 	                            </container>
@@ -53,6 +53,38 @@ under the License.
 	        </section>
 	    </screen>
 
+	    <screen name="CreateLinkManagerLinks">
+	        <section>
+	            <actions>
+	                <set field="titleProperty" value="PageTitleCreateLinkManagerLinks"/>
+	                <set field="linkManagerTabButtonItem" value="LinkManager"/>
+	                <set field="labelTitleProperty" value="PageTitleCreateLinkManagerLinks"/>
+	                <set field="linkManagerId" from-field="parameters.linkManagerId"/>
+	                <set field="donePage" from-field="parameters.DONE_PAGE" default-value="ListLinkManagerLinks"/>
+	                <set field="partyId" from-field="parameters.partyId"/>
+	                <set field="fromDate" from-field="parameters.fromDate"/>
+	                <entity-one entity-name="LinkManager" value-field="linkManager"/>
+	            </actions>
+	            <widgets>
+	                <decorator-screen name="CommonContactListDecorator" location="${parameters.mainDecoratorLocation}">
+	                    <decorator-section name="body">
+	                        <screenlet title="${uiLabelMap.PageTitleCreateLinkMangerLinks}">
+	                            <include-form name="CreateLinkManagerLinks" location="component://marketing/widget/LinkManagerForms.xml"/>
+	                            <container><label style="h2" text="${uiLabelMap.CommonStatusHistory}"/></container>
+	                            <iterate-section entry="linkManagerPartyStatus" list="linkManagerPartyStatusList">
+	                                <section>
+	                                    <widgets>
+	                                        <container><label text="${contactListPartyStatus.statusDate} ${contactListPartyStatus.description} [by: ${contactListPartyStatus.setByUserLoginId}] [code: ${contactListPartyStatus.optInVerifyCode}]"/></container>
+	                                    </widgets>
+	                                </section>
+	                            </iterate-section>
+	                        </screenlet>
+	                    </decorator-section>
+	                </decorator-screen>
+	            </widgets>
+	        </section>
+	    </screen>
+	
 	    <screen name="EditLinkManagerLinks">
 	        <section>
 	            <actions>

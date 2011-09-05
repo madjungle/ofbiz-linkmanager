@@ -381,9 +381,19 @@ under the License.
     </request-map>
     <request-map uri="EditLinkManagerLinks">
         <security https="true" auth="true"/>
+        <event type="service" path="" invoke="updateLinkManagerLinks"/>
         <response name="success" type="view" value="EditLinkManagerLinks"/>
     </request-map>
-
+    <request-map uri="CreateLinkManagerLinks">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="createLinkManagerLinks"/>
+        <response name="success" type="view" value="CreateLinkManagerLinks"/>
+    </request-map>
+    <request-map uri="DeleteLinkManagerLinks">
+        <security https="true" auth="true"/>
+        <event type="service" path="" invoke="deleteLinkManagerLinks"/>
+        <response name="success" type="view" value="DeleteLinkManagerLinks"/>
+    </request-map>
 
     <!-- Lookup request mappings -->
     <request-map uri="LookupSegmentGroup"><security https="true" auth="true"/><response name="success" type="view" value="LookupSegmentGroup"/></request-map>
@@ -480,5 +490,7 @@ under the License.
 
     <view-map name="ListLinkManagerLinks" type="screen" page="component://marketing/widget/LinkManagerScreens.xml#ListLinkManagerLinks"/>
     <view-map name="EditLinkManagerLinks" type="screen" page="component://marketing/widget/LinkManagerScreens.xml#EditLinkManagerLinks"/>
+    <view-map name="CreateLinkManagerLinks" type="screen" page="component://marketing/widget/LinkManagerScreens.xml#CreateLinkManagerLinks"/>
+    <view-map name="DeleteLinkManagerLinks" type="screen" page="component://marketing/widget/LinkManagerScreens.xml#DeleteLinkManagerLinks"/>
 <!-- end of view mappings -->
 </site-conf>
