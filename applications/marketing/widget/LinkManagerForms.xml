@@ -56,9 +56,9 @@ under the License.
 	        <field use-when="createdDate!=null" name="createdDate"><display/></field>
 
 	        <field name="linkStatusId" title="${uiLabelMap.LinkManagerLinkStatusId}">
-	            <drop-down no-current-selected-key="MKTG_CAMP_ACTIVE">
-	                <entity-options entity-name="StatusItem" description="${description}">
-	                    <entity-constraint name="statusTypeId" value="MKTG_CAMP_ACTIVE" operator="equals"/>
+	            <drop-down>
+	                <entity-options entity-name="statusItem" description="${description}">
+	                    <entity-constraint name="statusTypeId" value="MKTG_LINK_STATUS" operator="equals"/>
 	                    <entity-order-by field-name="description"/>
 	                </entity-options>
 	            </drop-down>
