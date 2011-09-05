@@ -55,15 +55,15 @@ under the License.
 	        <field use-when="partyId!=null" name="partyId"><display/></field>
 	        <field use-when="createdDate!=null" name="createdDate"><display/></field>
 
-	        <field name="linkStatusId" title="${uiLabelMap.LinkManagerLinkStatusId}">
+	        <field name="statusTypeId" title="${uiLabelMap.LinkManagerLinkStatusId}">
 	            <drop-down>
-	                <entity-options entity-name="statusItem" description="${description}">
+	                <entity-options entity-name="StatusItem" description="${description}">
 	                    <entity-constraint name="statusTypeId" value="MKTG_LINK_STATUS" operator="equals"/>
 	                    <entity-order-by field-name="description"/>
 	                </entity-options>
 	            </drop-down>
 	        </field>
-	
+
 	        <field name="linkTypeId" title="${uiLabelMap.LinkManagerLinkTypeId}">
 	            <drop-down>
 	                <entity-options entity-name="LinkManagerLinkType" description="${description}">
