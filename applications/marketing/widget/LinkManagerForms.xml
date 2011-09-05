@@ -20,31 +20,13 @@ under the License.
 
 <forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
-    
-	    <form name="ListLinkManagerLinks" target="ListLinkManagerLinks" title="" type="list" list-name="listIt"
-	        odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
-	        <actions>
-	            <service service-name="performFind" result-map="result" result-map-list="listIt">
-	                <field-map field-name="inputFields" from-field="parameters"/>
-	                <field-map field-name="orderBy" value="linkManagerId"/>
-	                <field-map field-name="entityName" value="LinkManager"/>
-	                <field-map field-name="viewIndex" from-field="viewIndex"/>
-	                <field-map field-name="viewSize" from-field="viewSize"/>
-	            </service>
-	        </actions>
-	        <field name="linkManagerId"  widget-style="buttontext" title="${uiLabelMap.MarketingLinkManagerId}">
-	            <hyperlink target="EditLinkManagerLinks" description="${MarketingLinkManagerId}" also-hidden="false">
-	                <parameter param-name="linkManagerId"/>
-	            </hyperlink>
-	        </field>
-	        <field name="linkStatusId" title="${uiLabelMap.MarketingLinkManagerLinkStatusId}"><display/></field>
-	        <field name="linkTypeId" title="${uiLabelMap.MarketingLinkManagerLinkType}"><display/></field>
-	        <field name="linkAnchorText" title="${uiLabelMap.MarketingLinkManagerLinkAnchorText}"><display/></field>
-	        <field name="linkDescription" title="${uiLabelMap.MarketingLinkManagerLinkDescription}"><display/></field>
-	        <field name="websiteUrl" title="${uiLabelMap.MarketingLinkManagerWebsiteUrl}"><display/></field>
-	        <field name="createdDate" title="${uiLabelMap.MarketingLinkManagerCreatedDate}"><display/></field>
+	    <form name="ListLinkManagerLinks" type="single" target="ListLinkManagerLinks" default-entity-name="LinkManager">
+	        <field name="noConditionFind"><hidden value="Y"/><!-- if this isn't there then with all fields empty no query will be done --></field>
+	        <field name="linkManagerId" title="${uiLabelMap.ExampleExampleId}"><text-find/></field>
+	        <field name="linkAnchorText" title="${uiLabelMap.CommonName}"><text-find/></field>
+	        <field name="searchButton" title="${uiLabelMap.CommonFind}" widget-style="smallSubmit"><submit button-type="button"/></field>
 	    </form>
-
+	
 	    <form name="EditLinkManagerLinks" type="single" target="createLinkManagerLinks" title=""
 	        header-row-style="header-row" default-table-style="basic-table">
 	        <alt-target use-when="contactListParty==null" target="createContactListParty"/>
@@ -146,4 +128,28 @@ under the License.
 	        <field use-when="partyId!=null" name="submitButton" title="${uiLabelMap.CommonUpdate}" widget-style="buttontext"><submit button-type="text-link"/></field>
 	        <field name="cancelLink" title=" " widget-style="buttontext"><hyperlink target="${donePage}" also-hidden="false" description="${uiLabelMap.CommonCancelDone}"/></field>
 	     </form>
+	
+	    <form name="ListLinkManagerLinks" type="list" list-name="listIt" paginate-target="FindExample" default-entity-name="LinkManager" separate-columns="true"
+	        odd-row-style="alternate-row" header-row-style="header-row-2" default-table-style="basic-table hover-bar">
+	        <actions>
+	            <service service-name="performFind" result-map="result" result-map-list="listIt">
+	                <field-map field-name="inputFields" from-field="exampleCtx"/>
+	                <field-map field-name="entityName" value="LinkManager"/>
+	                <field-map field-name="orderBy" from-field="parameters.sortField"/>
+	                <field-map field-name="viewIndex" from-field="viewIndex"/>
+	                <field-map field-name="viewSize" from-field="viewSize"/>
+	            </service>
+	        </actions>
+	        <alt-row-style use-when="&quot;EXST_APPROVED&quot;.equals(statusId)" style="Validate"/>
+	        <alt-row-style use-when="&quot;EXST_CANCELLED&quot;.equals(statusId)" style="Warn"/>
+	        <field name="exampleId" title="${uiLabelMap.ExampleExampleId}" widget-style="buttontext">
+	            <hyperlink also-hidden="false" description="${exampleId}" target="EditExample">
+	                <parameter param-name="exampleId"/>
+	            </hyperlink>
+	        </field>
+	        <field name="exampleName" title="${uiLabelMap.CommonName}" sort-field="true"><display/></field>
+	        <field name="exampleTypeId" title="${uiLabelMap.CommonType}"><display-entity entity-name="ExampleType"/></field>
+	        <field name="statusId" title="${uiLabelMap.CommonStatus}"><display-entity entity-name="StatusItem"/></field>
+	        <field name="description" title="${uiLabelMap.CommonDescription}" sort-field="true"><display/></field>
+	    </form>
 </forms>

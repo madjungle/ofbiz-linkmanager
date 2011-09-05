@@ -47,6 +47,9 @@ under the License.
 	                            </container>
 	                            <include-form name="ListLinkManagerLinks" location="component://marketing/widget/LinkManagerForms.xml"/>
 	                        </screenlet>
+	                        <decorator-section name="search-results">
+                                <include-form name="ListExamples" location="component://example/widget/example/ExampleForms.xml"/>
+                            </decorator-section>
 	                    </decorator-section>
 	                </decorator-screen>
 	            </widgets>
